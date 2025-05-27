@@ -8,17 +8,26 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
-
+    steps {
+        sh '''
+            export NVM_DIR="$HOME/.nvm"
+            source "$NVM_DIR/nvm.sh"
+            nvm use 16
+            npm install
+        '''
+    }
+}
+    }
         stage('Test') {
-            steps {
-                sh 'npm test'
-            }
-        }
-
+    steps {
+        sh '''
+            export NVM_DIR="$HOME/.nvm"
+            source "$NVM_DIR/nvm.sh"
+            nvm use 16
+            npm test
+        '''
+    }
+}
         stage('Docker Build') {
             steps {
                 sh 'docker build -t $IMAGE_NAME .'
