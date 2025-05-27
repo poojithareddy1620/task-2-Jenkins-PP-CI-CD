@@ -43,8 +43,5 @@ pipeline {
                 }
             }
         }
-
-        stage('Deploy') {
-            steps {
-                sh '''
-                    docker ps -q --filter "ancestor=$DOCKER
+    }
+       
