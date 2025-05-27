@@ -3,29 +3,21 @@ pipeline {
 
     environment {
         IMAGE_NAME = "jenkins-demo-app"
-        DOCKER_HUB_USER = "your_dockerhub_username"
+        DOCKER_HUB_USER = "poojithareddy1620"
+        NODE_PATH = "/root/.nvm/versions/node/v16.20.2/bin"
+        PATH = "${NODE_PATH}:${env.PATH}"
     }
 
     stages {
         stage('Build') {
             steps {
-                sh '''
-                    export NVM_DIR="$HOME/.nvm"
-                    source "$NVM_DIR/nvm.sh"
-                    nvm use 16
-                    npm install
-                '''
+                sh 'npm install'
             }
         }
 
         stage('Test') {
             steps {
-                sh '''
-                    export NVM_DIR="$HOME/.nvm"
-                    source "$NVM_DIR/nvm.sh"
-                    nvm use 16
-                    npm test
-                '''
+                sh 'npm test'
             }
         }
 
