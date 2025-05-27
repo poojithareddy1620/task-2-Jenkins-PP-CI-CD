@@ -9,34 +9,30 @@ pipeline {
     }
 
     stages {
-       stage('Build') {
-    steps {
-        sh '''
-            export NVM_DIR="$HOME/.nvm"
-            source "$NVM_DIR/nvm.sh"
-            nvm use 16
-            export PATH=$NVM_DIR/versions/node/v16.20.2/bin:$PATH
-            node -v
-            npm -v
-            npm install
-        '''
-    }
-}
-    }
+        stage('Build') {
+            steps {
+                sh '''
+                    export NVM_DIR="$HOME/.nvm"
+                    source "$NVM_DIR/nvm.sh"
+                    nvm use 16
+                    export PATH=$NVM_DIR/versions/node/v16.20.2/bin:$PATH
+                    node -v
+                    npm -v
+                    npm install
+                '''
+            }
         }
 
-       stage('Test') {
-    steps {
-        sh '''
-            export NVM_DIR="$HOME/.nvm"
-            source "$NVM_DIR/nvm.sh"
-            nvm use 16
-            export PATH=$NVM_DIR/versions/node/v16.20.2/bin:$PATH
-            npm test
-        '''
-    }
-}
-
+        stage('Test') {
+            steps {
+                sh '''
+                    export NVM_DIR="$HOME/.nvm"
+                    source "$NVM_DIR/nvm.sh"
+                    nvm use 16
+                    export PATH=$NVM_DIR/versions/node/v16.20.2/bin:$PATH
+                    npm test
+                '''
+            }
         }
 
         stage('Docker Build') {
