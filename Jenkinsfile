@@ -7,12 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/poojithareddy1620/task-2-Jenkins-PP-CI-CD.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 sh 'npm install'
